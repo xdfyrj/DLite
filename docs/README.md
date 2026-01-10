@@ -21,6 +21,3 @@ cmake --build build
 
 ..ARM64?
 
-# License
-
-TBD
