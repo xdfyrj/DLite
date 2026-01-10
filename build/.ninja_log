@@ -1,0 +1,13 @@
+# ninja log v7
+63	4140	7897380790300270	test/CMakeFiles/load.dir/load.cpp.obj	23555e89daa867a1
+8	741	7897388328860138	build.ninja	3d51e730627d2ea8
+8	741	7897388328622753	C:/Users/sumyr/study/RustKiller/DLite/build/cmake_install.cmake	3d51e730627d2ea8
+8	741	7897388328752751	C:/Users/sumyr/study/RustKiller/DLite/build/test/cmake_install.cmake	3d51e730627d2ea8
+59	2627	7897386283243208	CMakeFiles/DLite.dir/src/loader.cpp.obj	a564e54d280b048c
+2634	3184	7897386308998624	libDLite.a	ff4a78b94c1718cf
+3184	3641	7897386314501234	test/load.exe	fe544ba6bad1bee
+43	714	7897388328860138	build.ninja	3d51e730627d2ea8
+43	714	7897388328860138	C:/Users/sumyr/study/RustKiller/DLite/build/cmake_install.cmake	3d51e730627d2ea8
+43	714	7897388328860138	C:/Users/sumyr/study/RustKiller/DLite/build/test/cmake_install.cmake	3d51e730627d2ea8
+84	1110	7897388331527167	test/CMakeFiles/load_test.dir/load_test.cpp.obj	edfc98ecb0998e87
+1112	1446	7897388341821687	test/load_test.exe	14abd3a829fcb3a0
