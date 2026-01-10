@@ -1,5 +1,5 @@
 # DLite(Disassembler Lite)
-A lightweight disassembly program written in C++
+A lightweight disassembly library written in C++
 
 # Build
 
