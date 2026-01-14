@@ -10,19 +10,14 @@ cmake -S . -B build -G Ninja
 cmake --build build
 ```
 
-# To-Do
+## To-Do
 
-## features
-
-- [x] Load file data
-- [ ] Parse data
-- [ ] disassemble
-- [ ] Provide structured instructions
-
-## Possible Architectures
-
-- [ ] ELF x86-64
-- [ ] PE x86-64
+- [ ] PE/COFF loader (.text/.rdata/.pdata/.xdata, imports, relocations)
+- [ ] Function boundary discovery (prefer `.pdata` RUNTIME_FUNCTION)
+- [ ] Disassembler integration
+- [ ] Instruction IR (address, mnemonic, operands, bytes)
+- [ ] CFG construction utilities
+- [ ] Output formatting (text + JSON)
 
 ..ARM64?
 
