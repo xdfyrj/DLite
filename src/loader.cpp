@@ -1,9 +1,10 @@
 #include <dlite/loader.hpp>
 
+#include <fstream>
+#include <limits>
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include <limits>
 
 #ifdef _WIN32
   #ifndef NOMINMAX
@@ -14,6 +15,91 @@
 #endif
 
 namespace dlite {
+
+const Section* find_section_by_rva(const BinaryImage& image, std::uint64_t rva) {
+    for (const auto& section : image.sections) {
+        const std::uint64_t span =
+            (section.vsize > section.raw_size) ? section.vsize : section.raw_size;
+        if (span == 0) {
+            continue;
+        }
+        if (rva >= section.vaddr && rva < section.vaddr + span) {
+            return &section;
+        }
+    }
+    return nullptr;
+}
+
+std::optional<std::uint64_t> rva_to_file_offset(const BinaryImage& image, std::uint64_t rva) {
+    const Section* section = find_section_by_rva(image, rva);
+    if (!section) {
+        return std::nullopt;
+    }
+
+    const std::uint64_t delta = rva - section->vaddr;
+    if (delta >= section->raw_size) {
+        return std::nullopt;
+    }
+
+    const std::uint64_t offset = section->raw_offset + delta;
+    if (offset >= image.data.size()) {
+        return std::nullopt;
+    }
+
+    return offset;
+}
+
+std::optional<ByteView> view_rva(
+    const BinaryImage& image,
+    std::uint64_t rva,
+    std::size_t size) {
+    const Section* section = find_section_by_rva(image, rva);
+    if (!section) {
+        return std::nullopt;
+    }
+
+    const std::uint64_t delta = rva - section->vaddr;
+    if (delta >= section->raw_size) {
+        return std::nullopt;
+    }
+
+    const std::uint64_t available = section->raw_size - delta;
+    const std::uint64_t request = static_cast<std::uint64_t>(size);
+    if (request > available) {
+        return std::nullopt;
+    }
+
+    const std::uint64_t offset = section->raw_offset + delta;
+    if (offset + request > image.data.size()) {
+        return std::nullopt;
+    }
+
+    return ByteView{image.data.data() + offset, size};
+}
+
+std::vector<std::uint8_t> read_file_bytes(const std::string& path) {
+    std::ifstream file(path, std::ios::binary | std::ios::ate);
+    if (!file) {
+        throw std::runtime_error("Failed to open file: " + path);
+    }
+
+    const std::streamsize size = file.tellg();
+    if (size < 0) {
+        throw std::runtime_error("Invalid file size");
+    }
+    if (static_cast<unsigned long long>(size) >
+        static_cast<unsigned long long>(std::numeric_limits<std::size_t>::max())) {
+        throw std::runtime_error("File too large for memory buffer");
+    }
+
+    std::vector<std::uint8_t> data(static_cast<std::size_t>(size));
+    file.seekg(0, std::ios::beg);
+    if (!file.read(reinterpret_cast<char*>(data.data()), size)) {
+        throw std::runtime_error("Failed to read file data");
+    }
+
+    return data;
+}
 
 #ifdef _WIN32
 static std::runtime_error WinErr(const char* msg) {
@@ -73,6 +159,10 @@ static std::vector<std::uint8_t> read_all_data(const std::wstring& path) {
     }
 
     return data;
+}
+
+std::vector<std::uint8_t> read_file_bytes(const std::wstring& path) {
+    return read_all_data(path);
 }
 #endif
 

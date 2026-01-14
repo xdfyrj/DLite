@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(DLite STATIC
     src/loader.cpp
+    src/pe_loader.cpp
 )
 
 target_include_directories(DLite PUBLIC

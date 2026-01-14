@@ -52,6 +52,14 @@ build CMakeFiles/DLite.dir/src/loader.cpp.obj: CXX_COMPILER__DLite_unscanned_ C$
   OBJECT_FILE_DIR = CMakeFiles\DLite.dir\src
   TARGET_SUPPORT_DIR = CMakeFiles\DLite.dir
 
+build CMakeFiles/DLite.dir/src/pe_loader.cpp.obj: CXX_COMPILER__DLite_unscanned_ C$:/Users/sumyr/study/RustKiller/DLite/src/pe_loader.cpp || cmake_object_order_depends_target_DLite
+  DEP_FILE = CMakeFiles\DLite.dir\src\pe_loader.cpp.obj.d
+  FLAGS = -std=gnu++2a
+  INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include
+  OBJECT_DIR = CMakeFiles\DLite.dir
+  OBJECT_FILE_DIR = CMakeFiles\DLite.dir\src
+  TARGET_SUPPORT_DIR = CMakeFiles\DLite.dir
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target DLite
@@ -60,7 +68,7 @@ build CMakeFiles/DLite.dir/src/loader.cpp.obj: CXX_COMPILER__DLite_unscanned_ C$
 #############################################
 # Link the static library libDLite.a
 
-build libDLite.a: CXX_STATIC_LIBRARY_LINKER__DLite_ CMakeFiles/DLite.dir/src/loader.cpp.obj
+build libDLite.a: CXX_STATIC_LIBRARY_LINKER__DLite_ CMakeFiles/DLite.dir/src/loader.cpp.obj CMakeFiles/DLite.dir/src/pe_loader.cpp.obj
   OBJECT_DIR = CMakeFiles\DLite.dir
   POST_BUILD = cd .
   PRE_LINK = cd .

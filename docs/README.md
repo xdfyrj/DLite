@@ -17,7 +17,7 @@ cmake --build build
 - [ ] disassemble
 - [ ] Provide structured instructions
 
-## Possible Architectures
+## Possible Executable files
 
 - [ ] ELF x86-64
 - [ ] PE x86-64
