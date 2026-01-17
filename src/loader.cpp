@@ -272,6 +272,8 @@ bool is_elf_format(const std::vector<std::uint8_t>& data) {
     return true;
 }
 
+} // namespace
+
 BinaryFormat detect_format(const std::vector<std::uint8_t>& data) {
     if (is_elf_format(data)) {
         return BinaryFormat::Elf;

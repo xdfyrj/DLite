@@ -10,6 +10,7 @@ namespace dlite {
 
 enum class BinaryFormat { Unk, Pe, Elf };
 enum class CpuArch { Unk, X86_64 };
+enum class Bitness { Unk, Bit64, Bit32 };
 
 struct Section {
     std::string name;
@@ -23,6 +24,7 @@ struct Section {
 struct BinaryImage {
     BinaryFormat format{BinaryFormat::Unk};
     CpuArch arch{CpuArch::Unk};
+    Bitness bitness{Bitness::Unk};
     std::uint64_t image_base{0};
     std::uint64_t entry_point_rva{0};
     std::vector<Section> sections;
@@ -36,11 +38,7 @@ struct ByteView {
 
 const Section* find_section_by_rva(const BinaryImage& image, std::uint64_t rva);
 std::optional<std::uint64_t> rva_to_file_offset(const BinaryImage& image, std::uint64_t rva);
-std::optional<ByteView> view_rva(
-    const BinaryImage& image,
-    std::uint64_t rva,
-    std::size_t size
-);
+std::optional<ByteView> view_rva(const BinaryImage& image, std::uint64_t rva, std::size_t size);
 
 std::vector<std::uint8_t> read_file_bytes(const std::string& path);
 #ifdef _WIN32

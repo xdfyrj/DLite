@@ -28,6 +28,16 @@ const char* arch_to_string(dlite::CpuArch arch) {
         return "Unknown";
     }
 }
+const char* bitness_to_string(dlite::Bitness bitness) {
+    switch (bitness) {
+    case dlite::Bitness::Bit64:
+        return "64bit";
+    case dlite::Bitness::Bit32:
+        return "32bit";
+    default:
+        return "Unknown";
+    }
+}
 
 void print_hex(dlite::ByteView bytes) {
     for (std::size_t i = 0; i < bytes.size; ++i) {
@@ -98,13 +108,13 @@ int main(int argc, char** argv) {
 #endif
     std::cout << "format: " << format_to_string(image.format) << "\n";
     std::cout << "arch: " << arch_to_string(image.arch) << "\n";
+    std::cout << "bitness: " << bitness_to_string(image.bitness) << '\n';
     std::cout << "image_base: 0x" << std::hex << image.image_base << std::dec << "\n";
     std::cout << "entry_point_rva: 0x" << std::hex << image.entry_point_rva << std::dec << "\n";
-    std::cout << "entry_point_va: 0x"
-              << std::hex << (image.image_base + image.entry_point_rva) << std::dec << "\n";
+    std::cout << "entry_point_va: 0x" << std::hex << (image.image_base + image.entry_point_rva) << std::dec << "\n";
+    
     std::cout << "sections: " << image.sections.size() << "\n";
-
-    for (const auto& section : image.sections) {
+    for (const auto& section : image.sections) {  // print info of sections
         std::cout << "  [" << section.name << "] "
                   << "rva=0x" << std::hex << section.vaddr
                   << " vsize=0x" << section.vsize

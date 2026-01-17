@@ -119,6 +119,7 @@ BinaryImage load_pe(std::vector<std::uint8_t> data) {
     BinaryImage image;
     image.format = BinaryFormat::Pe;  // Format
     image.arch = CpuArch::X86_64;  // Arch
+    image.bitness = Bitness::Bit64;
     image.image_base = image_base;
     image.entry_point_rva = entry_point_rva;
     image.data = std::move(data);
