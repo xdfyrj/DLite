@@ -1,9 +1,11 @@
 #include <dlite/loader.hpp>
+#include <dlite/pe_loader.hpp>
 
 #include <fstream>
 #include <limits>
 #include <stdexcept>
 #include <string>
+#include <utility>
 #include <vector>
 
 #ifdef _WIN32
@@ -283,5 +285,27 @@ BinaryFormat detect_format(const std::vector<std::uint8_t>& data) {
     }
     return BinaryFormat::Unk;
 }
+
+BinaryImage load_file(std::vector<std::uint8_t> data) {
+    const BinaryFormat format = detect_format(data);
+    switch (format) {
+    case BinaryFormat::Pe:
+        return load_pe(std::move(data));
+    case BinaryFormat::Elf:
+        throw std::runtime_error("ELF is not supported yet");
+    default:
+        throw std::runtime_error("Unknown binary format");
+    }
+}
+
+BinaryImage load_file_from_path(const std::string& path) {
+    return load_file(read_file_bytes(path));
+}
+
+#ifdef _WIN32
+BinaryImage load_file_from_path(const std::wstring& path) {
+    return load_file(read_file_bytes(path));
+}
+#endif
 
 } // namespace dlite

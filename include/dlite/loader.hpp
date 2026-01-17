@@ -50,4 +50,10 @@ std::vector<std::uint8_t> read_file(std::wstring* outPath = nullptr);
 
 BinaryFormat detect_format(const std::vector<std::uint8_t>& data);
 
+BinaryImage load_file(std::vector<std::uint8_t> data);
+BinaryImage load_file_from_path(const std::string& path);
+#ifdef _WIN32
+BinaryImage load_file_from_path(const std::wstring& path);
+#endif
+
 } // namespace dlite
