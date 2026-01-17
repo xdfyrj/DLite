@@ -47,7 +47,7 @@ build cmake_object_order_depends_target_DLite: phony || .
 build CMakeFiles/DLite.dir/src/loader.cpp.obj: CXX_COMPILER__DLite_unscanned_ C$:/Users/sumyr/study/RustKiller/DLite/src/loader.cpp || cmake_object_order_depends_target_DLite
   DEP_FILE = CMakeFiles\DLite.dir\src\loader.cpp.obj.d
   FLAGS = -std=gnu++2a
-  INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include
+  INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include -IC:/mingw64/include
   OBJECT_DIR = CMakeFiles\DLite.dir
   OBJECT_FILE_DIR = CMakeFiles\DLite.dir\src
   TARGET_SUPPORT_DIR = CMakeFiles\DLite.dir
@@ -55,7 +55,15 @@ build CMakeFiles/DLite.dir/src/loader.cpp.obj: CXX_COMPILER__DLite_unscanned_ C$
 build CMakeFiles/DLite.dir/src/pe_loader.cpp.obj: CXX_COMPILER__DLite_unscanned_ C$:/Users/sumyr/study/RustKiller/DLite/src/pe_loader.cpp || cmake_object_order_depends_target_DLite
   DEP_FILE = CMakeFiles\DLite.dir\src\pe_loader.cpp.obj.d
   FLAGS = -std=gnu++2a
-  INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include
+  INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include -IC:/mingw64/include
+  OBJECT_DIR = CMakeFiles\DLite.dir
+  OBJECT_FILE_DIR = CMakeFiles\DLite.dir\src
+  TARGET_SUPPORT_DIR = CMakeFiles\DLite.dir
+
+build CMakeFiles/DLite.dir/src/disasm.cpp.obj: CXX_COMPILER__DLite_unscanned_ C$:/Users/sumyr/study/RustKiller/DLite/src/disasm.cpp || cmake_object_order_depends_target_DLite
+  DEP_FILE = CMakeFiles\DLite.dir\src\disasm.cpp.obj.d
+  FLAGS = -std=gnu++2a
+  INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include -IC:/mingw64/include
   OBJECT_DIR = CMakeFiles\DLite.dir
   OBJECT_FILE_DIR = CMakeFiles\DLite.dir\src
   TARGET_SUPPORT_DIR = CMakeFiles\DLite.dir
@@ -68,7 +76,7 @@ build CMakeFiles/DLite.dir/src/pe_loader.cpp.obj: CXX_COMPILER__DLite_unscanned_
 #############################################
 # Link the static library libDLite.a
 
-build libDLite.a: CXX_STATIC_LIBRARY_LINKER__DLite_ CMakeFiles/DLite.dir/src/loader.cpp.obj CMakeFiles/DLite.dir/src/pe_loader.cpp.obj
+build libDLite.a: CXX_STATIC_LIBRARY_LINKER__DLite_ CMakeFiles/DLite.dir/src/loader.cpp.obj CMakeFiles/DLite.dir/src/pe_loader.cpp.obj CMakeFiles/DLite.dir/src/disasm.cpp.obj
   OBJECT_DIR = CMakeFiles\DLite.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -130,8 +138,8 @@ build test/CMakeFiles/load_test.dir/load_test.cpp.obj: CXX_COMPILER__load_test_u
 #############################################
 # Link the executable test\load_test.exe
 
-build test/load_test.exe: CXX_EXECUTABLE_LINKER__load_test_ test/CMakeFiles/load_test.dir/load_test.cpp.obj | libDLite.a || libDLite.a
-  LINK_LIBRARIES = libDLite.a  -lcomdlg32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+build test/load_test.exe: CXX_EXECUTABLE_LINKER__load_test_ test/CMakeFiles/load_test.dir/load_test.cpp.obj | libDLite.a C$:/mingw64/lib/libcapstone.a || libDLite.a
+  LINK_LIBRARIES = libDLite.a  C:/mingw64/lib/libcapstone.a  -lcomdlg32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = test\CMakeFiles\load_test.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -139,6 +147,41 @@ build test/load_test.exe: CXX_EXECUTABLE_LINKER__load_test_ test/CMakeFiles/load
   TARGET_IMPLIB = test\libload_test.dll.a
   TARGET_PDB = load_test.exe.dbg
   TARGET_SUPPORT_DIR = test\CMakeFiles\load_test.dir
+
+# =============================================================================
+# Object build statements for EXECUTABLE target test
+
+
+#############################################
+# Order-only phony target for test
+
+build cmake_object_order_depends_target_test: phony || cmake_object_order_depends_target_DLite
+
+build test/CMakeFiles/test.dir/test.cpp.obj: CXX_COMPILER__test_unscanned_ C$:/Users/sumyr/study/RustKiller/DLite/test/test.cpp || cmake_object_order_depends_target_test
+  DEP_FILE = test\CMakeFiles\test.dir\test.cpp.obj.d
+  FLAGS = -std=gnu++2a
+  INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include
+  OBJECT_DIR = test\CMakeFiles\test.dir
+  OBJECT_FILE_DIR = test\CMakeFiles\test.dir
+  TARGET_SUPPORT_DIR = test\CMakeFiles\test.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target test
+
+
+#############################################
+# Link the executable test\test.exe
+
+build test/test.exe: CXX_EXECUTABLE_LINKER__test_ test/CMakeFiles/test.dir/test.cpp.obj | libDLite.a C$:/mingw64/lib/libcapstone.a || libDLite.a
+  LINK_LIBRARIES = libDLite.a  C:/mingw64/lib/libcapstone.a  -lcomdlg32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = test\CMakeFiles\test.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = test\test.exe
+  TARGET_IMPLIB = test\libtest.dll.a
+  TARGET_PDB = test.exe.dbg
+  TARGET_SUPPORT_DIR = test\CMakeFiles\test.dir
 
 
 #############################################
@@ -173,6 +216,10 @@ build load_test: phony test/load_test.exe
 
 build load_test.exe: phony test/load_test.exe
 
+build test: phony test/test.exe
+
+build test.exe: phony test/test.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -188,7 +235,7 @@ build all: phony libDLite.a test/all
 #############################################
 # Folder: C:/Users/sumyr/study/RustKiller/DLite/build/test
 
-build test/all: phony test/load_test.exe
+build test/all: phony test/load_test.exe test/test.exe
 
 # =============================================================================
 # Built-in targets

@@ -74,7 +74,7 @@ BinaryImage load_pe(std::vector<std::uint8_t> data) {
         throw std::runtime_error("File too small for DOS header");
     }
 
-    if (read_u16(data, 0) != kMzSignature) {
+    if (read_u16(data, 0) != kMzSignature) {  // MZ signature check
         throw std::runtime_error("Missing MZ signature");
     }
 
@@ -117,8 +117,8 @@ BinaryImage load_pe(std::vector<std::uint8_t> data) {
     }
 
     BinaryImage image;
-    image.format = BinaryFormat::Pe;
-    image.arch = CpuArch::X86_64;
+    image.format = BinaryFormat::Pe;  // Format
+    image.arch = CpuArch::X86_64;  // Arch
     image.image_base = image_base;
     image.entry_point_rva = entry_point_rva;
     image.data = std::move(data);

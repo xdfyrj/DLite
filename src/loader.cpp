@@ -192,4 +192,94 @@ std::vector<std::uint8_t> read_file(std::wstring* outPath) {
 #endif
 }
 
+namespace {
+
+constexpr std::uint16_t kMzSignature = 0x5A4D;
+constexpr std::uint32_t kPeSignature = 0x00004550;
+constexpr std::uint16_t kPe32Magic = 0x10B;
+constexpr std::uint16_t kPe32PlusMagic = 0x20B;
+constexpr std::size_t kDosHeaderPeOffset = 0x3C;
+constexpr std::size_t kFileHeaderSize = 20;
+
+constexpr std::uint8_t kElfMagic0 = 0x7F;
+constexpr std::uint8_t kElfMagic1 = 0x45;
+constexpr std::uint8_t kElfMagic2 = 0x4C;
+constexpr std::uint8_t kElfMagic3 = 0x46;
+constexpr std::size_t kElfIdentSize = 16;
+
+bool has_range(const std::vector<std::uint8_t>& data, std::size_t offset, std::size_t size) {
+    return offset <= data.size() && size <= data.size() - offset;
+}
+
+std::uint16_t read_u16_le(const std::vector<std::uint8_t>& data, std::size_t offset) {
+    return static_cast<std::uint16_t>(data[offset]) |
+        (static_cast<std::uint16_t>(data[offset + 1]) << 8);
+}
+
+std::uint32_t read_u32_le(const std::vector<std::uint8_t>& data, std::size_t offset) {
+    return static_cast<std::uint32_t>(data[offset]) |
+        (static_cast<std::uint32_t>(data[offset + 1]) << 8) |
+        (static_cast<std::uint32_t>(data[offset + 2]) << 16) |
+        (static_cast<std::uint32_t>(data[offset + 3]) << 24);
+}
+
+bool is_pe_format(const std::vector<std::uint8_t>& data) {
+    if (!has_range(data, 0, 2) || read_u16_le(data, 0) != kMzSignature) {
+        return false;
+    }
+    if (!has_range(data, kDosHeaderPeOffset, 4)) {
+        return false;
+    }
+
+    const std::uint32_t pe_offset = read_u32_le(data, kDosHeaderPeOffset);
+    if (!has_range(data, pe_offset, 4 + kFileHeaderSize)) {
+        return false;
+    }
+    if (read_u32_le(data, pe_offset) != kPeSignature) {
+        return false;
+    }
+
+    const std::size_t file_header_offset = pe_offset + 4;
+    const std::uint16_t optional_header_size =
+        read_u16_le(data, file_header_offset + 16);
+    const std::size_t optional_offset = file_header_offset + kFileHeaderSize;
+    if (!has_range(data, optional_offset, optional_header_size) || optional_header_size < 2) {
+        return false;
+    }
+
+    const std::uint16_t magic = read_u16_le(data, optional_offset);
+    return magic == kPe32Magic || magic == kPe32PlusMagic;
+}
+
+bool is_elf_format(const std::vector<std::uint8_t>& data) {
+    if (!has_range(data, 0, kElfIdentSize)) {
+        return false;
+    }
+    if (data[0] != kElfMagic0 || data[1] != kElfMagic1 ||
+        data[2] != kElfMagic2 || data[3] != kElfMagic3) {
+        return false;
+    }
+
+    const std::uint8_t elf_class = data[4];
+    const std::uint8_t elf_data = data[5];
+    const std::uint8_t elf_version = data[6];
+    if ((elf_class != 1 && elf_class != 2) ||
+        (elf_data != 1 && elf_data != 2) ||
+        elf_version != 1) {
+        return false;
+    }
+
+    return true;
+}
+
+BinaryFormat detect_format(const std::vector<std::uint8_t>& data) {
+    if (is_elf_format(data)) {
+        return BinaryFormat::Elf;
+    }
+    if (is_pe_format(data)) {
+        return BinaryFormat::Pe;
+    }
+    return BinaryFormat::Unk;
+}
+
 } // namespace dlite

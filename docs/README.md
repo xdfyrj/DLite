@@ -12,12 +12,13 @@ cmake --build build
 
 ## To-Do
 
-- [ ] PE/COFF loader (.text/.rdata/.pdata/.xdata, imports, relocations)
+- [x] Basic PE/COFF loader (headers, sections, entry point)
+- [ ] PE data directories (.pdata/.xdata, imports, relocations)
 - [ ] Function boundary discovery (prefer `.pdata` RUNTIME_FUNCTION)
-- [ ] Disassembler integration
-- [ ] Instruction IR (address, mnemonic, operands, bytes)
+- [x] Capstone disassembler integration (x86-64, `.text`)
+- [x] Instruction IR (address, mnemonic, operands, bytes)
 - [ ] CFG construction utilities
 - [ ] Output formatting (text + JSON)
 
-..ARM64?
+- [ ] Future: ARM64?
 
