@@ -50,7 +50,6 @@ cmake_ninja_workdir = C$:/Users/sumyr/study/RustKiller/DLite/build/
 build cmake_object_order_depends_target_DLite: phony || .
 
 build CMakeFiles/DLite.dir/src/loader.cpp.obj: CXX_COMPILER__DLite_unscanned_Debug C$:/Users/sumyr/study/RustKiller/DLite/src/loader.cpp || cmake_object_order_depends_target_DLite
-  CODE_CHECK = C:\mingw64\bin\cmake.exe -E __run_co_compile --tidy=C:/mingw64/bin/clang-tidy.exe;--extra-arg-before=--driver-mode=g++ --source=C:\Users\sumyr\study\RustKiller\DLite\src\loader.cpp -- 
   DEP_FILE = CMakeFiles\DLite.dir\src\loader.cpp.obj.d
   FLAGS = -g -std=gnu++20
   INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include -isystem C:/vcpkg/installed/x64-mingw-dynamic/include
@@ -58,7 +57,6 @@ build CMakeFiles/DLite.dir/src/loader.cpp.obj: CXX_COMPILER__DLite_unscanned_Deb
   OBJECT_FILE_DIR = CMakeFiles\DLite.dir\src
 
 build CMakeFiles/DLite.dir/src/pe_loader.cpp.obj: CXX_COMPILER__DLite_unscanned_Debug C$:/Users/sumyr/study/RustKiller/DLite/src/pe_loader.cpp || cmake_object_order_depends_target_DLite
-  CODE_CHECK = C:\mingw64\bin\cmake.exe -E __run_co_compile --tidy=C:/mingw64/bin/clang-tidy.exe;--extra-arg-before=--driver-mode=g++ --source=C:\Users\sumyr\study\RustKiller\DLite\src\pe_loader.cpp -- 
   DEP_FILE = CMakeFiles\DLite.dir\src\pe_loader.cpp.obj.d
   FLAGS = -g -std=gnu++20
   INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include -isystem C:/vcpkg/installed/x64-mingw-dynamic/include
@@ -66,7 +64,6 @@ build CMakeFiles/DLite.dir/src/pe_loader.cpp.obj: CXX_COMPILER__DLite_unscanned_
   OBJECT_FILE_DIR = CMakeFiles\DLite.dir\src
 
 build CMakeFiles/DLite.dir/src/disasm.cpp.obj: CXX_COMPILER__DLite_unscanned_Debug C$:/Users/sumyr/study/RustKiller/DLite/src/disasm.cpp || cmake_object_order_depends_target_DLite
-  CODE_CHECK = C:\mingw64\bin\cmake.exe -E __run_co_compile --tidy=C:/mingw64/bin/clang-tidy.exe;--extra-arg-before=--driver-mode=g++ --source=C:\Users\sumyr\study\RustKiller\DLite\src\disasm.cpp -- 
   DEP_FILE = CMakeFiles\DLite.dir\src\disasm.cpp.obj.d
   FLAGS = -g -std=gnu++20
   INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include -isystem C:/vcpkg/installed/x64-mingw-dynamic/include
@@ -128,7 +125,6 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 build cmake_object_order_depends_target_test: phony || cmake_object_order_depends_target_DLite
 
 build tests/CMakeFiles/test.dir/test.cpp.obj: CXX_COMPILER__test_unscanned_Debug C$:/Users/sumyr/study/RustKiller/DLite/tests/test.cpp || cmake_object_order_depends_target_test
-  CODE_CHECK = C:\mingw64\bin\cmake.exe -E __run_co_compile --tidy=C:/mingw64/bin/clang-tidy.exe;--extra-arg-before=--driver-mode=g++ --source=C:\Users\sumyr\study\RustKiller\DLite\tests\test.cpp -- 
   DEP_FILE = tests\CMakeFiles\test.dir\test.cpp.obj.d
   FLAGS = -g -std=gnu++20
   INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include -isystem C:/vcpkg/installed/x64-mingw-dynamic/include

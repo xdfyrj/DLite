@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include <cstddef>
 #include <cstdint>
 #include <optional>
@@ -12,6 +13,7 @@ namespace dlite {
 enum class BinaryFormat { Unk, Pe, Elf };
 enum class CpuArch { Unk, X86, X86_64 };
 enum class Bitness { Unk, Bit64, Bit32 };
+constexpr std::size_t kPeDataDirectoryCount = 16;
 
 struct Section {
     std::string name;
@@ -22,12 +24,18 @@ struct Section {
     std::uint32_t characteristics{0};
 };
 
+struct DataDirectory {
+    std::uint32_t rva{0};
+    std::uint32_t size{0};
+};
+
 struct BinaryImage {
     BinaryFormat format{BinaryFormat::Unk};
     CpuArch arch{CpuArch::Unk};
     Bitness bitness{Bitness::Unk};
     std::uint64_t image_base{0};
     std::uint64_t entry_point_rva{0};
+    std::array<DataDirectory, kPeDataDirectoryCount> data_directories{};
     std::vector<Section> sections;
     std::vector<std::uint8_t> data;
 };

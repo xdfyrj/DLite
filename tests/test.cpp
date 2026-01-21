@@ -161,6 +161,14 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+    try {
+        const auto exec_instructions = dlite::disassemble_executable_sections(image);
+        std::cout << "disasm exec sections count: " << exec_instructions.size() << "\n";
+    } catch (const std::exception& e) {
+        std::cerr << "exec disasm error: " << e.what() << "\n";
+        return 1;
+    }
+
     if (image_from_path.format != image.format) {
         std::cerr << "format mismatch between load_file and load_file_from_path\n";
     }

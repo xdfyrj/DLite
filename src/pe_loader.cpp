@@ -17,6 +17,10 @@ constexpr std::size_t kFileHeaderSize = 20;
 constexpr std::size_t kSectionHeaderSize = 40;
 constexpr std::size_t kOptionalHeaderMinSize32 = 0x60;
 constexpr std::size_t kOptionalHeaderMinSize64 = 0x70;
+constexpr std::size_t kPe32NumberOfRvaAndSizesOffset = 0x5C;
+constexpr std::size_t kPe32PlusNumberOfRvaAndSizesOffset = 0x6C;
+constexpr std::size_t kPe32DataDirectoryOffset = 0x60;
+constexpr std::size_t kPe32PlusDataDirectoryOffset = 0x70;
 
 void require_range(const std::vector<std::uint8_t>& data, std::size_t offset, std::size_t size,
                    const char* msg) {
@@ -129,6 +133,24 @@ BinaryImage load_pe(std::vector<std::uint8_t> data) {
             ? read_u64(data, optional_offset + 0x18)
             : static_cast<std::uint64_t>(read_u32(data, optional_offset + 0x1C));
 
+    const std::size_t number_of_rva_offset = optional_offset +
+        ((bitness == Bitness::Bit64) ? kPe32PlusNumberOfRvaAndSizesOffset
+                                     : kPe32NumberOfRvaAndSizesOffset);
+    std::uint32_t number_of_rva_and_sizes = read_u32(data, number_of_rva_offset);
+    if (number_of_rva_and_sizes > kPeDataDirectoryCount) {
+        number_of_rva_and_sizes = static_cast<std::uint32_t>(kPeDataDirectoryCount);
+    }
+
+    const std::size_t data_directory_offset = optional_offset +
+        ((bitness == Bitness::Bit64) ? kPe32PlusDataDirectoryOffset : kPe32DataDirectoryOffset);
+    if (number_of_rva_and_sizes > 0) {
+        require_range(
+            data,
+            data_directory_offset,
+            static_cast<std::size_t>(number_of_rva_and_sizes) * 8,
+            "Optional header too small for data directories");
+    }
+
     const std::size_t section_table_offset = optional_offset + size_of_optional_header;
     if (number_of_sections > 0) {
         const std::size_t max_sections = (data.size() - section_table_offset) / kSectionHeaderSize;
@@ -145,6 +167,12 @@ BinaryImage load_pe(std::vector<std::uint8_t> data) {
     image.entry_point_rva = entry_point_rva;
     image.data = std::move(data);
     image.sections.reserve(number_of_sections);
+
+    for (std::size_t i = 0; i < number_of_rva_and_sizes; ++i) {
+        const std::size_t dir_offset = data_directory_offset + i * 8;
+        image.data_directories[i].rva = read_u32(image.data, dir_offset);
+        image.data_directories[i].size = read_u32(image.data, dir_offset + 4);
+    }
 
     for (std::uint16_t i = 0; i < number_of_sections; ++i) {
         const std::size_t section_offset =
