@@ -1,2 +1,0 @@
-C:\mingw64\bin\ar.exe qc libDLite.a CMakeFiles/DLite.dir/src/loader.cpp.obj CMakeFiles/DLite.dir/src/pe_loader.cpp.obj CMakeFiles/DLite.dir/src/disasm.cpp.obj
-C:\mingw64\bin\ranlib.exe libDLite.a

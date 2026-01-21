@@ -115,117 +115,6 @@ depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named DLite
-
-# Build rule for target.
-DLite: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 DLite
-.PHONY : DLite
-
-# fast build rule for target.
-DLite/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DLite.dir\build.make CMakeFiles/DLite.dir/build
-.PHONY : DLite/fast
-
-#=============================================================================
-# Target rules for targets named load_test
-
-# Build rule for target.
-load_test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 load_test
-.PHONY : load_test
-
-# fast build rule for target.
-load_test/fast:
-	$(MAKE) $(MAKESILENT) -f test\CMakeFiles\load_test.dir\build.make test/CMakeFiles/load_test.dir/build
-.PHONY : load_test/fast
-
-#=============================================================================
-# Target rules for targets named test
-
-# Build rule for target.
-test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 test
-.PHONY : test
-
-# fast build rule for target.
-test/fast:
-	$(MAKE) $(MAKESILENT) -f test\CMakeFiles\test.dir\build.make test/CMakeFiles/test.dir/build
-.PHONY : test/fast
-
-src/disasm.obj: src/disasm.cpp.obj
-.PHONY : src/disasm.obj
-
-# target to build an object file
-src/disasm.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DLite.dir\build.make CMakeFiles/DLite.dir/src/disasm.cpp.obj
-.PHONY : src/disasm.cpp.obj
-
-src/disasm.i: src/disasm.cpp.i
-.PHONY : src/disasm.i
-
-# target to preprocess a source file
-src/disasm.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DLite.dir\build.make CMakeFiles/DLite.dir/src/disasm.cpp.i
-.PHONY : src/disasm.cpp.i
-
-src/disasm.s: src/disasm.cpp.s
-.PHONY : src/disasm.s
-
-# target to generate assembly for a file
-src/disasm.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DLite.dir\build.make CMakeFiles/DLite.dir/src/disasm.cpp.s
-.PHONY : src/disasm.cpp.s
-
-src/loader.obj: src/loader.cpp.obj
-.PHONY : src/loader.obj
-
-# target to build an object file
-src/loader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DLite.dir\build.make CMakeFiles/DLite.dir/src/loader.cpp.obj
-.PHONY : src/loader.cpp.obj
-
-src/loader.i: src/loader.cpp.i
-.PHONY : src/loader.i
-
-# target to preprocess a source file
-src/loader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DLite.dir\build.make CMakeFiles/DLite.dir/src/loader.cpp.i
-.PHONY : src/loader.cpp.i
-
-src/loader.s: src/loader.cpp.s
-.PHONY : src/loader.s
-
-# target to generate assembly for a file
-src/loader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DLite.dir\build.make CMakeFiles/DLite.dir/src/loader.cpp.s
-.PHONY : src/loader.cpp.s
-
-src/pe_loader.obj: src/pe_loader.cpp.obj
-.PHONY : src/pe_loader.obj
-
-# target to build an object file
-src/pe_loader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DLite.dir\build.make CMakeFiles/DLite.dir/src/pe_loader.cpp.obj
-.PHONY : src/pe_loader.cpp.obj
-
-src/pe_loader.i: src/pe_loader.cpp.i
-.PHONY : src/pe_loader.i
-
-# target to preprocess a source file
-src/pe_loader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DLite.dir\build.make CMakeFiles/DLite.dir/src/pe_loader.cpp.i
-.PHONY : src/pe_loader.cpp.i
-
-src/pe_loader.s: src/pe_loader.cpp.s
-.PHONY : src/pe_loader.s
-
-# target to generate assembly for a file
-src/pe_loader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DLite.dir\build.make CMakeFiles/DLite.dir/src/pe_loader.cpp.s
-.PHONY : src/pe_loader.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -234,18 +123,6 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... DLite
-	@echo ... load_test
-	@echo ... test
-	@echo ... src/disasm.obj
-	@echo ... src/disasm.i
-	@echo ... src/disasm.s
-	@echo ... src/loader.obj
-	@echo ... src/loader.i
-	@echo ... src/loader.s
-	@echo ... src/pe_loader.obj
-	@echo ... src/pe_loader.i
-	@echo ... src/pe_loader.s
 .PHONY : help
 
 

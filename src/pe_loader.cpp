@@ -7,13 +7,16 @@ namespace {
 
 constexpr std::uint16_t kMzSignature = 0x5A4D;
 constexpr std::uint32_t kPeSignature = 0x00004550;
+constexpr std::uint16_t kPe32Magic = 0x10B;
 constexpr std::uint16_t kPe32PlusMagic = 0x20B;
+constexpr std::uint16_t kMachineI386 = 0x14C;
 constexpr std::uint16_t kMachineAmd64 = 0x8664;
 
 constexpr std::size_t kDosHeaderPeOffset = 0x3C;
 constexpr std::size_t kFileHeaderSize = 20;
 constexpr std::size_t kSectionHeaderSize = 40;
-constexpr std::size_t kOptionalHeaderMinSize = 0x70;
+constexpr std::size_t kOptionalHeaderMinSize32 = 0x60;
+constexpr std::size_t kOptionalHeaderMinSize64 = 0x70;
 
 void require_range(
     const std::vector<std::uint8_t>& data,
@@ -87,25 +90,46 @@ BinaryImage load_pe(std::vector<std::uint8_t> data) {
 
     const std::size_t file_header_offset = pe_offset + 4;
     const std::uint16_t machine = read_u16(data, file_header_offset);
-    if (machine != kMachineAmd64) {
-        throw std::runtime_error("Unsupported machine type (expected x86-64)");
-    }
 
     const std::uint16_t number_of_sections = read_u16(data, file_header_offset + 2);
     const std::uint16_t size_of_optional_header = read_u16(data, file_header_offset + 16);
 
     const std::size_t optional_offset = file_header_offset + kFileHeaderSize;
     require_range(data, optional_offset, size_of_optional_header, "Invalid optional header size");
-    if (size_of_optional_header < kOptionalHeaderMinSize) {
-        throw std::runtime_error("Optional header too small for PE32+");
+    if (size_of_optional_header < 2) {
+        throw std::runtime_error("Optional header too small");
     }
 
-    if (read_u16(data, optional_offset) != kPe32PlusMagic) {
-        throw std::runtime_error("Not a PE32+ (x64) binary");
+    const std::uint16_t magic = read_u16(data, optional_offset);
+    Bitness bitness = Bitness::Unk;
+    CpuArch arch = CpuArch::Unk;
+    std::size_t min_optional_size = 0;
+    if (magic == kPe32PlusMagic) {
+        if (machine != kMachineAmd64) {
+            throw std::runtime_error("Unsupported machine type (expected x86-64)");
+        }
+        bitness = Bitness::Bit64;
+        arch = CpuArch::X86_64;
+        min_optional_size = kOptionalHeaderMinSize64;
+    } else if (magic == kPe32Magic) {
+        if (machine != kMachineI386) {
+            throw std::runtime_error("Unsupported machine type (expected x86)");
+        }
+        bitness = Bitness::Bit32;
+        arch = CpuArch::X86;
+        min_optional_size = kOptionalHeaderMinSize32;
+    } else {
+        throw std::runtime_error("Unknown PE optional header magic");
+    }
+
+    if (size_of_optional_header < min_optional_size) {
+        throw std::runtime_error("Optional header too small for PE");
     }
 
     const std::uint32_t entry_point_rva = read_u32(data, optional_offset + 0x10);
-    const std::uint64_t image_base = read_u64(data, optional_offset + 0x18);
+    const std::uint64_t image_base = (bitness == Bitness::Bit64)
+        ? read_u64(data, optional_offset + 0x18)
+        : static_cast<std::uint64_t>(read_u32(data, optional_offset + 0x1C));
 
     const std::size_t section_table_offset = optional_offset + size_of_optional_header;
     if (number_of_sections > 0) {
@@ -118,8 +142,8 @@ BinaryImage load_pe(std::vector<std::uint8_t> data) {
 
     BinaryImage image;
     image.format = BinaryFormat::Pe;  // Format
-    image.arch = CpuArch::X86_64;  // Arch
-    image.bitness = Bitness::Bit64;
+    image.arch = arch;  // Arch
+    image.bitness = bitness;  // Bitness
     image.image_base = image_base;
     image.entry_point_rva = entry_point_rva;
     image.data = std::move(data);

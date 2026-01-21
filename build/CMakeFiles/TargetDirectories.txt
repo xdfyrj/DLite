@@ -1,7 +1,3 @@
 C:/Users/sumyr/study/RustKiller/DLite/build/CMakeFiles/DLite.dir
 C:/Users/sumyr/study/RustKiller/DLite/build/CMakeFiles/edit_cache.dir
 C:/Users/sumyr/study/RustKiller/DLite/build/CMakeFiles/rebuild_cache.dir
-C:/Users/sumyr/study/RustKiller/DLite/build/test/CMakeFiles/load_test.dir
-C:/Users/sumyr/study/RustKiller/DLite/build/test/CMakeFiles/test.dir
-C:/Users/sumyr/study/RustKiller/DLite/build/test/CMakeFiles/edit_cache.dir
-C:/Users/sumyr/study/RustKiller/DLite/build/test/CMakeFiles/rebuild_cache.dir

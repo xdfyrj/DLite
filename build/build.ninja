@@ -12,7 +12,7 @@
 
 # =============================================================================
 # Project: DLite
-# Configurations: 
+# Configurations: Debug
 # =============================================================================
 
 #############################################
@@ -20,6 +20,11 @@
 
 ninja_required_version = 1.5
 
+
+#############################################
+# Set configuration variable for custom commands.
+
+CONFIGURATION = Debug
 # =============================================================================
 # Include auxiliary files.
 
@@ -44,28 +49,34 @@ cmake_ninja_workdir = C$:/Users/sumyr/study/RustKiller/DLite/build/
 
 build cmake_object_order_depends_target_DLite: phony || .
 
-build CMakeFiles/DLite.dir/src/loader.cpp.obj: CXX_COMPILER__DLite_unscanned_ C$:/Users/sumyr/study/RustKiller/DLite/src/loader.cpp || cmake_object_order_depends_target_DLite
+build CMakeFiles/DLite.dir/src/loader.cpp.obj: CXX_COMPILER__DLite_unscanned_Debug C$:/Users/sumyr/study/RustKiller/DLite/src/loader.cpp || cmake_object_order_depends_target_DLite
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\DLite.dir\src\loader.cpp.obj.d
-  FLAGS = -std=gnu++2a
-  INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include -IC:/mingw64/include
+  FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   OBJECT_DIR = CMakeFiles\DLite.dir
   OBJECT_FILE_DIR = CMakeFiles\DLite.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\DLite.dir\DLite.pdb
+  TARGET_PDB = DLite.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\DLite.dir
 
-build CMakeFiles/DLite.dir/src/pe_loader.cpp.obj: CXX_COMPILER__DLite_unscanned_ C$:/Users/sumyr/study/RustKiller/DLite/src/pe_loader.cpp || cmake_object_order_depends_target_DLite
+build CMakeFiles/DLite.dir/src/pe_loader.cpp.obj: CXX_COMPILER__DLite_unscanned_Debug C$:/Users/sumyr/study/RustKiller/DLite/src/pe_loader.cpp || cmake_object_order_depends_target_DLite
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\DLite.dir\src\pe_loader.cpp.obj.d
-  FLAGS = -std=gnu++2a
-  INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include -IC:/mingw64/include
+  FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   OBJECT_DIR = CMakeFiles\DLite.dir
   OBJECT_FILE_DIR = CMakeFiles\DLite.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\DLite.dir\DLite.pdb
+  TARGET_PDB = DLite.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\DLite.dir
 
-build CMakeFiles/DLite.dir/src/disasm.cpp.obj: CXX_COMPILER__DLite_unscanned_ C$:/Users/sumyr/study/RustKiller/DLite/src/disasm.cpp || cmake_object_order_depends_target_DLite
+build CMakeFiles/DLite.dir/src/disasm.cpp.obj: CXX_COMPILER__DLite_unscanned_Debug C$:/Users/sumyr/study/RustKiller/DLite/src/disasm.cpp || cmake_object_order_depends_target_DLite
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\DLite.dir\src\disasm.cpp.obj.d
-  FLAGS = -std=gnu++2a
-  INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include -IC:/mingw64/include
+  FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   OBJECT_DIR = CMakeFiles\DLite.dir
   OBJECT_FILE_DIR = CMakeFiles\DLite.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\DLite.dir\DLite.pdb
+  TARGET_PDB = DLite.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\DLite.dir
 
 
@@ -74,14 +85,17 @@ build CMakeFiles/DLite.dir/src/disasm.cpp.obj: CXX_COMPILER__DLite_unscanned_ C$
 
 
 #############################################
-# Link the static library libDLite.a
+# Link the static library DLite.lib
 
-build libDLite.a: CXX_STATIC_LIBRARY_LINKER__DLite_ CMakeFiles/DLite.dir/src/loader.cpp.obj CMakeFiles/DLite.dir/src/pe_loader.cpp.obj CMakeFiles/DLite.dir/src/disasm.cpp.obj
+build DLite.lib: CXX_STATIC_LIBRARY_LINKER__DLite_Debug CMakeFiles/DLite.dir/src/loader.cpp.obj CMakeFiles/DLite.dir/src/pe_loader.cpp.obj CMakeFiles/DLite.dir/src/disasm.cpp.obj
+  CONFIG = Debug
+  LANGUAGE_COMPILE_FLAGS = -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   OBJECT_DIR = CMakeFiles\DLite.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = libDLite.a
-  TARGET_PDB = DLite.a.dbg
+  TARGET_COMPILE_PDB = CMakeFiles\DLite.dir\DLite.pdb
+  TARGET_FILE = DLite.lib
+  TARGET_PDB = DLite.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\DLite.dir
 
 
@@ -109,116 +123,9 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 # =============================================================================
-# Write statements declared in CMakeLists.txt:
-# C:/Users/sumyr/study/RustKiller/DLite/CMakeLists.txt
-# =============================================================================
-
-# =============================================================================
-# Object build statements for EXECUTABLE target load_test
-
-
-#############################################
-# Order-only phony target for load_test
-
-build cmake_object_order_depends_target_load_test: phony || cmake_object_order_depends_target_DLite
-
-build test/CMakeFiles/load_test.dir/load_test.cpp.obj: CXX_COMPILER__load_test_unscanned_ C$:/Users/sumyr/study/RustKiller/DLite/test/load_test.cpp || cmake_object_order_depends_target_load_test
-  DEP_FILE = test\CMakeFiles\load_test.dir\load_test.cpp.obj.d
-  FLAGS = -std=gnu++2a
-  INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include
-  OBJECT_DIR = test\CMakeFiles\load_test.dir
-  OBJECT_FILE_DIR = test\CMakeFiles\load_test.dir
-  TARGET_SUPPORT_DIR = test\CMakeFiles\load_test.dir
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target load_test
-
-
-#############################################
-# Link the executable test\load_test.exe
-
-build test/load_test.exe: CXX_EXECUTABLE_LINKER__load_test_ test/CMakeFiles/load_test.dir/load_test.cpp.obj | libDLite.a C$:/mingw64/lib/libcapstone.a || libDLite.a
-  LINK_LIBRARIES = libDLite.a  C:/mingw64/lib/libcapstone.a  -lcomdlg32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = test\CMakeFiles\load_test.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_FILE = test\load_test.exe
-  TARGET_IMPLIB = test\libload_test.dll.a
-  TARGET_PDB = load_test.exe.dbg
-  TARGET_SUPPORT_DIR = test\CMakeFiles\load_test.dir
-
-# =============================================================================
-# Object build statements for EXECUTABLE target test
-
-
-#############################################
-# Order-only phony target for test
-
-build cmake_object_order_depends_target_test: phony || cmake_object_order_depends_target_DLite
-
-build test/CMakeFiles/test.dir/test.cpp.obj: CXX_COMPILER__test_unscanned_ C$:/Users/sumyr/study/RustKiller/DLite/test/test.cpp || cmake_object_order_depends_target_test
-  DEP_FILE = test\CMakeFiles\test.dir\test.cpp.obj.d
-  FLAGS = -std=gnu++2a
-  INCLUDES = -IC:/Users/sumyr/study/RustKiller/DLite/include
-  OBJECT_DIR = test\CMakeFiles\test.dir
-  OBJECT_FILE_DIR = test\CMakeFiles\test.dir
-  TARGET_SUPPORT_DIR = test\CMakeFiles\test.dir
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target test
-
-
-#############################################
-# Link the executable test\test.exe
-
-build test/test.exe: CXX_EXECUTABLE_LINKER__test_ test/CMakeFiles/test.dir/test.cpp.obj | libDLite.a C$:/mingw64/lib/libcapstone.a || libDLite.a
-  LINK_LIBRARIES = libDLite.a  C:/mingw64/lib/libcapstone.a  -lcomdlg32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = test\CMakeFiles\test.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_FILE = test\test.exe
-  TARGET_IMPLIB = test\libtest.dll.a
-  TARGET_PDB = test.exe.dbg
-  TARGET_SUPPORT_DIR = test\CMakeFiles\test.dir
-
-
-#############################################
-# Utility command for edit_cache
-
-build test/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\sumyr\study\RustKiller\DLite\build\test && "C:\Program Files\CMake\bin\cmake-gui.exe" -SC:\Users\sumyr\study\RustKiller\DLite -BC:\Users\sumyr\study\RustKiller\DLite\build"
-  DESC = Running CMake cache editor...
-  pool = console
-  restat = 1
-
-build test/edit_cache: phony test/CMakeFiles/edit_cache.util
-
-
-#############################################
-# Utility command for rebuild_cache
-
-build test/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\sumyr\study\RustKiller\DLite\build\test && "C:\Program Files\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\sumyr\study\RustKiller\DLite -BC:\Users\sumyr\study\RustKiller\DLite\build"
-  DESC = Running CMake to regenerate build system...
-  pool = console
-  restat = 1
-
-build test/rebuild_cache: phony test/CMakeFiles/rebuild_cache.util
-
-# =============================================================================
 # Target aliases.
 
-build DLite: phony libDLite.a
-
-build load_test: phony test/load_test.exe
-
-build load_test.exe: phony test/load_test.exe
-
-build test: phony test/test.exe
-
-build test.exe: phony test/test.exe
+build DLite: phony DLite.lib
 
 # =============================================================================
 # Folder targets.
@@ -228,14 +135,7 @@ build test.exe: phony test/test.exe
 #############################################
 # Folder: C:/Users/sumyr/study/RustKiller/DLite/build
 
-build all: phony libDLite.a test/all
-
-# =============================================================================
-
-#############################################
-# Folder: C:/Users/sumyr/study/RustKiller/DLite/build/test
-
-build test/all: phony test/load_test.exe test/test.exe
+build all: phony DLite.lib
 
 # =============================================================================
 # Built-in targets
@@ -244,14 +144,14 @@ build test/all: phony test/load_test.exe test/test.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja C$:/Users/sumyr/study/RustKiller/DLite/build/cmake_install.cmake C$:/Users/sumyr/study/RustKiller/DLite/build/test/cmake_install.cmake: RERUN_CMAKE | C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeRCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Linker/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Linker/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Linker/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/WindowsPaths.cmake C$:/Users/sumyr/study/RustKiller/DLite/CMakeLists.txt C$:/Users/sumyr/study/RustKiller/DLite/test/CMakeLists.txt CMakeCache.txt CMakeFiles/4.2.1/CMakeCCompiler.cmake CMakeFiles/4.2.1/CMakeCXXCompiler.cmake CMakeFiles/4.2.1/CMakeRCCompiler.cmake CMakeFiles/4.2.1/CMakeSystem.cmake
+build build.ninja C$:/Users/sumyr/study/RustKiller/DLite/build/cmake_install.cmake: RERUN_CMAKE | C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeRCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/Clang-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/Clang-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/Clang.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Linker/LLD-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Linker/LLD-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Linker/LLD.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Linker/MSVC.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-LLD-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-LLD-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-LLD.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-MSVC.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-Clang-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-Clang-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-Clang.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/WindowsPaths.cmake C$:/Users/sumyr/study/RustKiller/DLite/CMakeLists.txt CMakeCache.txt CMakeFiles/4.2.1/CMakeCCompiler.cmake CMakeFiles/4.2.1/CMakeCXXCompiler.cmake CMakeFiles/4.2.1/CMakeRCCompiler.cmake CMakeFiles/4.2.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeRCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Linker/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Linker/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Linker/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/WindowsPaths.cmake C$:/Users/sumyr/study/RustKiller/DLite/CMakeLists.txt C$:/Users/sumyr/study/RustKiller/DLite/test/CMakeLists.txt CMakeCache.txt CMakeFiles/4.2.1/CMakeCCompiler.cmake CMakeFiles/4.2.1/CMakeCXXCompiler.cmake CMakeFiles/4.2.1/CMakeRCCompiler.cmake CMakeFiles/4.2.1/CMakeSystem.cmake: phony
+build C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeRCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/Clang-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/Clang-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Compiler/Clang.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Linker/LLD-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Linker/LLD-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Linker/LLD.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Linker/MSVC.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-LLD-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-LLD-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-LLD.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-MSVC.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-Clang-C.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-Clang-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-Clang.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/Windows.cmake C$:/Program$ Files/CMake/share/cmake-4.2/Modules/Platform/WindowsPaths.cmake C$:/Users/sumyr/study/RustKiller/DLite/CMakeLists.txt CMakeCache.txt CMakeFiles/4.2.1/CMakeCCompiler.cmake CMakeFiles/4.2.1/CMakeCXXCompiler.cmake CMakeFiles/4.2.1/CMakeRCCompiler.cmake CMakeFiles/4.2.1/CMakeSystem.cmake: phony
 
 
 #############################################

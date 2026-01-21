@@ -9,7 +9,7 @@
 namespace dlite {
 
 enum class BinaryFormat { Unk, Pe, Elf };
-enum class CpuArch { Unk, X86_64 };
+enum class CpuArch { Unk, X86, X86_64 };
 enum class Bitness { Unk, Bit64, Bit32 };
 
 struct Section {

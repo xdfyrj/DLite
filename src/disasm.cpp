@@ -8,22 +8,39 @@
 
 namespace {
 
-void ensure_x86_64(const dlite::BinaryImage& image) {
-    if (image.arch != dlite::CpuArch::X86_64) {
-        throw std::runtime_error("Unsupported CPU architecture for disassembly");
+cs_mode select_cs_mode(const dlite::BinaryImage& image) {
+    if (image.bitness == dlite::Bitness::Bit32) {
+        if (image.arch != dlite::CpuArch::Unk && image.arch != dlite::CpuArch::X86) {
+            throw std::runtime_error("Bitness/arch mismatch for 32-bit disassembly");
+        }
+        return CS_MODE_32;
     }
+    if (image.bitness == dlite::Bitness::Bit64) {
+        if (image.arch != dlite::CpuArch::Unk && image.arch != dlite::CpuArch::X86_64) {
+            throw std::runtime_error("Bitness/arch mismatch for 64-bit disassembly");
+        }
+        return CS_MODE_64;
+    }
+    if (image.arch == dlite::CpuArch::X86) {
+        return CS_MODE_32;
+    }
+    else if (image.arch == dlite::CpuArch::X86_64) {
+        return CS_MODE_64;
+    }
+    throw std::runtime_error("Unsupported CPU architecture for disassembly");
 }
 
 std::vector<dlite::Instruction> disassemble_bytes(
     const dlite::ByteView& bytes,
-    std::uint64_t address) {
+    std::uint64_t address,
+    cs_mode mode) {
     std::vector<dlite::Instruction> instructions;
     if (!bytes.data || bytes.size == 0) {
         return instructions;
     }
 
     csh handle = 0;
-    if (cs_open(CS_ARCH_X86, CS_MODE_64, &handle) != CS_ERR_OK) {
+    if (cs_open(CS_ARCH_X86, mode, &handle) != CS_ERR_OK) {
         throw std::runtime_error("Failed to initialize Capstone");
     }
 
@@ -69,7 +86,7 @@ std::vector<dlite::Instruction> disassemble_bytes(
 namespace dlite {
 
 std::vector<Instruction> disassemble_text_section(const BinaryImage& image) {
-    ensure_x86_64(image);
+    const cs_mode mode = select_cs_mode(image);
 
     const Section* text_section = nullptr;
     for (const auto& section : image.sections) {
@@ -94,7 +111,7 @@ std::vector<Instruction> disassemble_text_section(const BinaryImage& image) {
     }
 
     const std::uint64_t base_va = image.image_base + text_section->vaddr;
-    return disassemble_bytes(*bytes, base_va);
+    return disassemble_bytes(*bytes, base_va, mode);
 }
 
 } // namespace dlite

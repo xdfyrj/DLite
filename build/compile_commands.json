@@ -1,32 +1,20 @@
 [
 {
   "directory": "C:/Users/sumyr/study/RustKiller/DLite/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/DLite.dir/includes_CXX.rsp -g -std=gnu++2a -o CMakeFiles\\DLite.dir\\src\\loader.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\loader.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\DLite.dir\\src\\loader.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\loader.cpp",
   "file": "C:/Users/sumyr/study/RustKiller/DLite/src/loader.cpp",
-  "output": "CMakeFiles/DLite.dir/src/loader.cpp.obj"
+  "output": "C:/Users/sumyr/study/RustKiller/DLite/build/CMakeFiles/DLite.dir/src/loader.cpp.obj"
 },
 {
   "directory": "C:/Users/sumyr/study/RustKiller/DLite/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/DLite.dir/includes_CXX.rsp -g -std=gnu++2a -o CMakeFiles\\DLite.dir\\src\\pe_loader.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\pe_loader.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\DLite.dir\\src\\pe_loader.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\pe_loader.cpp",
   "file": "C:/Users/sumyr/study/RustKiller/DLite/src/pe_loader.cpp",
-  "output": "CMakeFiles/DLite.dir/src/pe_loader.cpp.obj"
+  "output": "C:/Users/sumyr/study/RustKiller/DLite/build/CMakeFiles/DLite.dir/src/pe_loader.cpp.obj"
 },
 {
   "directory": "C:/Users/sumyr/study/RustKiller/DLite/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/DLite.dir/includes_CXX.rsp -g -std=gnu++2a -o CMakeFiles\\DLite.dir\\src\\disasm.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\disasm.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\DLite.dir\\src\\disasm.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\disasm.cpp",
   "file": "C:/Users/sumyr/study/RustKiller/DLite/src/disasm.cpp",
-  "output": "CMakeFiles/DLite.dir/src/disasm.cpp.obj"
-},
-{
-  "directory": "C:/Users/sumyr/study/RustKiller/DLite/build/test",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/load_test.dir/includes_CXX.rsp -g -std=gnu++2a -o CMakeFiles\\load_test.dir\\load_test.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\test\\load_test.cpp",
-  "file": "C:/Users/sumyr/study/RustKiller/DLite/test/load_test.cpp",
-  "output": "test/CMakeFiles/load_test.dir/load_test.cpp.obj"
-},
-{
-  "directory": "C:/Users/sumyr/study/RustKiller/DLite/build/test",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/test.dir/includes_CXX.rsp -g -std=gnu++2a -o CMakeFiles\\test.dir\\test.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\test\\test.cpp",
-  "file": "C:/Users/sumyr/study/RustKiller/DLite/test/test.cpp",
-  "output": "test/CMakeFiles/test.dir/test.cpp.obj"
+  "output": "C:/Users/sumyr/study/RustKiller/DLite/build/CMakeFiles/DLite.dir/src/disasm.cpp.obj"
 }
 ]
