@@ -18,11 +18,8 @@ constexpr std::size_t kSectionHeaderSize = 40;
 constexpr std::size_t kOptionalHeaderMinSize32 = 0x60;
 constexpr std::size_t kOptionalHeaderMinSize64 = 0x70;
 
-void require_range(
-    const std::vector<std::uint8_t>& data,
-    std::size_t offset,
-    std::size_t size,
-    const char* msg) {
+void require_range(const std::vector<std::uint8_t>& data, std::size_t offset, std::size_t size,
+                   const char* msg) {
     if (offset > data.size() || size > data.size() - offset) {
         throw std::runtime_error(msg);
     }
@@ -31,27 +28,27 @@ void require_range(
 std::uint16_t read_u16(const std::vector<std::uint8_t>& data, std::size_t offset) {
     require_range(data, offset, 2, "Unexpected end of file");
     return static_cast<std::uint16_t>(data[offset]) |
-        (static_cast<std::uint16_t>(data[offset + 1]) << 8);
+           (static_cast<std::uint16_t>(data[offset + 1]) << 8);
 }
 
 std::uint32_t read_u32(const std::vector<std::uint8_t>& data, std::size_t offset) {
     require_range(data, offset, 4, "Unexpected end of file");
     return static_cast<std::uint32_t>(data[offset]) |
-        (static_cast<std::uint32_t>(data[offset + 1]) << 8) |
-        (static_cast<std::uint32_t>(data[offset + 2]) << 16) |
-        (static_cast<std::uint32_t>(data[offset + 3]) << 24);
+           (static_cast<std::uint32_t>(data[offset + 1]) << 8) |
+           (static_cast<std::uint32_t>(data[offset + 2]) << 16) |
+           (static_cast<std::uint32_t>(data[offset + 3]) << 24);
 }
 
 std::uint64_t read_u64(const std::vector<std::uint8_t>& data, std::size_t offset) {
     require_range(data, offset, 8, "Unexpected end of file");
     return static_cast<std::uint64_t>(data[offset]) |
-        (static_cast<std::uint64_t>(data[offset + 1]) << 8) |
-        (static_cast<std::uint64_t>(data[offset + 2]) << 16) |
-        (static_cast<std::uint64_t>(data[offset + 3]) << 24) |
-        (static_cast<std::uint64_t>(data[offset + 4]) << 32) |
-        (static_cast<std::uint64_t>(data[offset + 5]) << 40) |
-        (static_cast<std::uint64_t>(data[offset + 6]) << 48) |
-        (static_cast<std::uint64_t>(data[offset + 7]) << 56);
+           (static_cast<std::uint64_t>(data[offset + 1]) << 8) |
+           (static_cast<std::uint64_t>(data[offset + 2]) << 16) |
+           (static_cast<std::uint64_t>(data[offset + 3]) << 24) |
+           (static_cast<std::uint64_t>(data[offset + 4]) << 32) |
+           (static_cast<std::uint64_t>(data[offset + 5]) << 40) |
+           (static_cast<std::uint64_t>(data[offset + 6]) << 48) |
+           (static_cast<std::uint64_t>(data[offset + 7]) << 56);
 }
 
 std::string read_section_name(const std::vector<std::uint8_t>& data, std::size_t offset) {
@@ -77,7 +74,7 @@ BinaryImage load_pe(std::vector<std::uint8_t> data) {
         throw std::runtime_error("File too small for DOS header");
     }
 
-    if (read_u16(data, 0) != kMzSignature) {  // MZ signature check
+    if (read_u16(data, 0) != kMzSignature) { // MZ signature check
         throw std::runtime_error("Missing MZ signature");
     }
 
@@ -127,23 +124,23 @@ BinaryImage load_pe(std::vector<std::uint8_t> data) {
     }
 
     const std::uint32_t entry_point_rva = read_u32(data, optional_offset + 0x10);
-    const std::uint64_t image_base = (bitness == Bitness::Bit64)
-        ? read_u64(data, optional_offset + 0x18)
-        : static_cast<std::uint64_t>(read_u32(data, optional_offset + 0x1C));
+    const std::uint64_t image_base =
+        (bitness == Bitness::Bit64)
+            ? read_u64(data, optional_offset + 0x18)
+            : static_cast<std::uint64_t>(read_u32(data, optional_offset + 0x1C));
 
     const std::size_t section_table_offset = optional_offset + size_of_optional_header;
     if (number_of_sections > 0) {
-        const std::size_t max_sections =
-            (data.size() - section_table_offset) / kSectionHeaderSize;
+        const std::size_t max_sections = (data.size() - section_table_offset) / kSectionHeaderSize;
         if (number_of_sections > max_sections) {
             throw std::runtime_error("Invalid section table size");
         }
     }
 
     BinaryImage image;
-    image.format = BinaryFormat::Pe;  // Format
-    image.arch = arch;  // Arch
-    image.bitness = bitness;  // Bitness
+    image.format = BinaryFormat::Pe; // Format
+    image.arch = arch;               // Arch
+    image.bitness = bitness;         // Bitness
     image.image_base = image_base;
     image.entry_point_rva = entry_point_rva;
     image.data = std::move(data);

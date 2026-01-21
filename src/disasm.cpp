@@ -23,17 +23,14 @@ cs_mode select_cs_mode(const dlite::BinaryImage& image) {
     }
     if (image.arch == dlite::CpuArch::X86) {
         return CS_MODE_32;
-    }
-    else if (image.arch == dlite::CpuArch::X86_64) {
+    } else if (image.arch == dlite::CpuArch::X86_64) {
         return CS_MODE_64;
     }
     throw std::runtime_error("Unsupported CPU architecture for disassembly");
 }
 
-std::vector<dlite::Instruction> disassemble_bytes(
-    const dlite::ByteView& bytes,
-    std::uint64_t address,
-    cs_mode mode) {
+std::vector<dlite::Instruction> disassemble_bytes(const dlite::ByteView& bytes,
+                                                  std::uint64_t address, cs_mode mode) {
     std::vector<dlite::Instruction> instructions;
     if (bytes.empty()) {
         return instructions;
@@ -48,13 +45,7 @@ std::vector<dlite::Instruction> disassemble_bytes(
     cs_option(handle, CS_OPT_SKIPDATA, CS_OPT_ON);
 
     cs_insn* insn = nullptr;
-    const size_t count = cs_disasm(
-        handle,
-        bytes.data(),
-        bytes.size(),
-        address,
-        0,
-        &insn);
+    const size_t count = cs_disasm(handle, bytes.data(), bytes.size(), address, 0, &insn);
     if (count == 0) {
         const cs_err err = cs_errno(handle);
         cs_close(&handle);

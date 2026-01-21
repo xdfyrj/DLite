@@ -45,8 +45,7 @@ const char* bitness_to_string(dlite::Bitness bitness) {
 
 void print_hex(dlite::ByteView bytes) {
     for (std::uint8_t byte : bytes) {
-        std::cout << std::hex << std::setw(2) << std::setfill('0')
-                  << static_cast<int>(byte) << " ";
+        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(byte) << " ";
     }
     std::cout << std::dec;
 }
@@ -112,8 +111,7 @@ int main(int argc, char** argv) {
     std::cout << "arch: " << arch_to_string(image.arch) << "\n";
     std::cout << "bitness: " << bitness_to_string(image.bitness) << "\n";
     std::cout << "image_base: 0x" << std::hex << image.image_base << std::dec << "\n";
-    std::cout << "entry_point_rva: 0x" << std::hex << image.entry_point_rva << std::dec
-              << "\n";
+    std::cout << "entry_point_rva: 0x" << std::hex << image.entry_point_rva << std::dec << "\n";
 
     const auto entry_section = dlite::find_section_by_rva(image, image.entry_point_rva);
     if (entry_section) {
@@ -132,10 +130,8 @@ int main(int argc, char** argv) {
     std::cout << "sections: " << image.sections.size() << "\n";
     for (const auto& section : image.sections) {
         std::cout << "  [" << section.name << "] "
-                  << "rva=0x" << std::hex << section.vaddr
-                  << " vsize=0x" << section.vsize
-                  << " raw=0x" << section.raw_offset
-                  << " raw_size=0x" << section.raw_size
+                  << "rva=0x" << std::hex << section.vaddr << " vsize=0x" << section.vsize
+                  << " raw=0x" << section.raw_offset << " raw_size=0x" << section.raw_size
                   << std::dec << "\n";
     }
 

@@ -15,6 +15,9 @@
 ########################
 
 //Path to a program.
+CLANG_TIDY_EXE:FILEPATH=C:/mingw64/bin/clang-tidy.exe
+
+//Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=C:/mingw64/bin/addr2line.exe
 
 //Path to a program.
@@ -257,6 +260,9 @@ CMAKE_TOOLCHAIN_FILE:UNINITIALIZED=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
 // during the make.  This is useful for debugging only. With Visual
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
+
+//Enable clang-tidy checks during build
+DLITE_ENABLE_CLANG_TIDY:BOOL=ON
 
 //Value Computed by CMake
 DLite_BINARY_DIR:STATIC=C:/Users/sumyr/study/RustKiller/DLite/build

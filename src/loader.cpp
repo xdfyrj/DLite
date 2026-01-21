@@ -9,11 +9,11 @@
 #include <vector>
 
 #ifdef _WIN32
-  #ifndef NOMINMAX
-    #define NOMINMAX
-  #endif
-  #include <windows.h>
-  #include <commdlg.h>
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+#include <commdlg.h>
 #endif
 
 namespace dlite {
@@ -51,10 +51,7 @@ std::optional<std::uint64_t> rva_to_file_offset(const BinaryImage& image, std::u
     return offset;
 }
 
-std::optional<ByteView> view_rva(
-    const BinaryImage& image,
-    std::uint64_t rva,
-    std::size_t size) {
+std::optional<ByteView> view_rva(const BinaryImage& image, std::uint64_t rva, std::size_t size) {
     const Section* section = find_section_by_rva(image, rva);
     if (!section) {
         return std::nullopt;
@@ -112,18 +109,14 @@ static std::runtime_error WinErr(const char* msg) {
 static std::vector<std::uint8_t> read_all_data(const std::wstring& path) {
     struct Handle {
         HANDLE h{INVALID_HANDLE_VALUE};
-        ~Handle() { if (h != INVALID_HANDLE_VALUE) ::CloseHandle(h); }
+        ~Handle() {
+            if (h != INVALID_HANDLE_VALUE)
+                ::CloseHandle(h);
+        }
     } file;
 
-    file.h = ::CreateFileW(
-        path.c_str(),
-        GENERIC_READ,
-        FILE_SHARE_READ,
-        nullptr,
-        OPEN_EXISTING,
-        FILE_ATTRIBUTE_NORMAL,
-        nullptr
-    );
+    file.h = ::CreateFileW(path.c_str(), GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING,
+                           FILE_ATTRIBUTE_NORMAL, nullptr);
     if (file.h == INVALID_HANDLE_VALUE) {
         throw WinErr("CreateFileW failed");
     }
@@ -147,8 +140,8 @@ static std::vector<std::uint8_t> read_all_data(const std::wstring& path) {
     while (off < size) {
         const std::size_t remain = size - off;
         const DWORD chunk = (remain > static_cast<std::size_t>(std::numeric_limits<DWORD>::max()))
-            ? std::numeric_limits<DWORD>::max()
-            : static_cast<DWORD>(remain);
+                                ? std::numeric_limits<DWORD>::max()
+                                : static_cast<DWORD>(remain);
 
         DWORD readBytes = 0;
         if (!::ReadFile(file.h, data.data() + off, chunk, &readBytes, nullptr)) {
@@ -182,11 +175,13 @@ std::vector<std::uint8_t> read_file(std::wstring* outPath) {
     ofn.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST | OFN_NOCHANGEDIR;
 
     if (!::GetOpenFileNameW(&ofn)) {
-        if (outPath) *outPath = L"";
+        if (outPath)
+            *outPath = L"";
         return {}; // canceled (or dialog error, treated as empty)
     }
 
-    if (outPath) *outPath = filePath;
+    if (outPath)
+        *outPath = filePath;
     return read_all_data(filePath);
 #else
     (void)outPath;
@@ -215,14 +210,14 @@ bool has_range(const std::vector<std::uint8_t>& data, std::size_t offset, std::s
 
 std::uint16_t read_u16_le(const std::vector<std::uint8_t>& data, std::size_t offset) {
     return static_cast<std::uint16_t>(data[offset]) |
-        (static_cast<std::uint16_t>(data[offset + 1]) << 8);
+           (static_cast<std::uint16_t>(data[offset + 1]) << 8);
 }
 
 std::uint32_t read_u32_le(const std::vector<std::uint8_t>& data, std::size_t offset) {
     return static_cast<std::uint32_t>(data[offset]) |
-        (static_cast<std::uint32_t>(data[offset + 1]) << 8) |
-        (static_cast<std::uint32_t>(data[offset + 2]) << 16) |
-        (static_cast<std::uint32_t>(data[offset + 3]) << 24);
+           (static_cast<std::uint32_t>(data[offset + 1]) << 8) |
+           (static_cast<std::uint32_t>(data[offset + 2]) << 16) |
+           (static_cast<std::uint32_t>(data[offset + 3]) << 24);
 }
 
 bool is_pe_format(const std::vector<std::uint8_t>& data) {
@@ -242,8 +237,7 @@ bool is_pe_format(const std::vector<std::uint8_t>& data) {
     }
 
     const std::size_t file_header_offset = pe_offset + 4;
-    const std::uint16_t optional_header_size =
-        read_u16_le(data, file_header_offset + 16);
+    const std::uint16_t optional_header_size = read_u16_le(data, file_header_offset + 16);
     const std::size_t optional_offset = file_header_offset + kFileHeaderSize;
     if (!has_range(data, optional_offset, optional_header_size) || optional_header_size < 2) {
         return false;
@@ -257,16 +251,15 @@ bool is_elf_format(const std::vector<std::uint8_t>& data) {
     if (!has_range(data, 0, kElfIdentSize)) {
         return false;
     }
-    if (data[0] != kElfMagic0 || data[1] != kElfMagic1 ||
-        data[2] != kElfMagic2 || data[3] != kElfMagic3) {
+    if (data[0] != kElfMagic0 || data[1] != kElfMagic1 || data[2] != kElfMagic2 ||
+        data[3] != kElfMagic3) {
         return false;
     }
 
     const std::uint8_t elf_class = data[4];
     const std::uint8_t elf_data = data[5];
     const std::uint8_t elf_version = data[6];
-    if ((elf_class != 1 && elf_class != 2) ||
-        (elf_data != 1 && elf_data != 2) ||
+    if ((elf_class != 1 && elf_class != 2) || (elf_data != 1 && elf_data != 2) ||
         elf_version != 1) {
         return false;
     }
