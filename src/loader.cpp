@@ -76,7 +76,7 @@ std::optional<ByteView> view_rva(
         return std::nullopt;
     }
 
-    return ByteView{image.data.data() + offset, size};
+    return ByteView(image.data.data() + offset, size);
 }
 
 std::vector<std::uint8_t> read_file_bytes(const std::string& path) {

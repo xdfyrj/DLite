@@ -1,20 +1,26 @@
 [
 {
   "directory": "C:/Users/sumyr/study/RustKiller/DLite/build",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\DLite.dir\\src\\loader.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\loader.cpp",
-  "file": "C:/Users/sumyr/study/RustKiller/DLite/src/loader.cpp",
-  "output": "C:/Users/sumyr/study/RustKiller/DLite/build/CMakeFiles/DLite.dir/src/loader.cpp.obj"
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE --target=x86_64-w64-windows-gnu -IC:/Users/sumyr/study/RustKiller/DLite/include -isystem C:/vcpkg/installed/x64-mingw-dynamic/include -g -std=gnu++20 -o CMakeFiles\\DLite.dir\\src\\loader.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\loader.cpp",
+  "file": "C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\loader.cpp",
+  "output": "CMakeFiles\\DLite.dir\\src\\loader.cpp.obj"
 },
 {
   "directory": "C:/Users/sumyr/study/RustKiller/DLite/build",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\DLite.dir\\src\\pe_loader.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\pe_loader.cpp",
-  "file": "C:/Users/sumyr/study/RustKiller/DLite/src/pe_loader.cpp",
-  "output": "C:/Users/sumyr/study/RustKiller/DLite/build/CMakeFiles/DLite.dir/src/pe_loader.cpp.obj"
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE --target=x86_64-w64-windows-gnu -IC:/Users/sumyr/study/RustKiller/DLite/include -isystem C:/vcpkg/installed/x64-mingw-dynamic/include -g -std=gnu++20 -o CMakeFiles\\DLite.dir\\src\\pe_loader.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\pe_loader.cpp",
+  "file": "C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\pe_loader.cpp",
+  "output": "CMakeFiles\\DLite.dir\\src\\pe_loader.cpp.obj"
 },
 {
   "directory": "C:/Users/sumyr/study/RustKiller/DLite/build",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\DLite.dir\\src\\disasm.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\disasm.cpp",
-  "file": "C:/Users/sumyr/study/RustKiller/DLite/src/disasm.cpp",
-  "output": "C:/Users/sumyr/study/RustKiller/DLite/build/CMakeFiles/DLite.dir/src/disasm.cpp.obj"
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE --target=x86_64-w64-windows-gnu -IC:/Users/sumyr/study/RustKiller/DLite/include -isystem C:/vcpkg/installed/x64-mingw-dynamic/include -g -std=gnu++20 -o CMakeFiles\\DLite.dir\\src\\disasm.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\disasm.cpp",
+  "file": "C:\\Users\\sumyr\\study\\RustKiller\\DLite\\src\\disasm.cpp",
+  "output": "CMakeFiles\\DLite.dir\\src\\disasm.cpp.obj"
+},
+{
+  "directory": "C:/Users/sumyr/study/RustKiller/DLite/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE --target=x86_64-w64-windows-gnu -IC:/Users/sumyr/study/RustKiller/DLite/include -isystem C:/vcpkg/installed/x64-mingw-dynamic/include -g -std=gnu++20 -o tests\\CMakeFiles\\test.dir\\test.cpp.obj -c C:\\Users\\sumyr\\study\\RustKiller\\DLite\\tests\\test.cpp",
+  "file": "C:\\Users\\sumyr\\study\\RustKiller\\DLite\\tests\\test.cpp",
+  "output": "tests\\CMakeFiles\\test.dir\\test.cpp.obj"
 }
 ]

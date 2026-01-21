@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <optional>
+#include <span>
 #include <string>
 #include <vector>
 
@@ -31,10 +32,7 @@ struct BinaryImage {
     std::vector<std::uint8_t> data;
 };
 
-struct ByteView {
-    const std::uint8_t* data{nullptr};
-    std::size_t size{0};
-};
+using ByteView = std::span<const std::uint8_t>;
 
 const Section* find_section_by_rva(const BinaryImage& image, std::uint64_t rva);
 std::optional<std::uint64_t> rva_to_file_offset(const BinaryImage& image, std::uint64_t rva);

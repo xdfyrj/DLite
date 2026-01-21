@@ -9,3 +9,16 @@ add_library(DLite STATIC
     src/pe_loader.cpp
     src/disasm.cpp
 )
+
+target_include_directories(DLite PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+find_package(capstone CONFIG REQUIRED)
+target_link_libraries(DLite PUBLIC capstone::capstone)
+
+if (WIN32)
+    target_link_libraries(DLite PUBLIC comdlg32)
+endif()
+
+add_subdirectory(tests)

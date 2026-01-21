@@ -35,7 +35,7 @@ std::vector<dlite::Instruction> disassemble_bytes(
     std::uint64_t address,
     cs_mode mode) {
     std::vector<dlite::Instruction> instructions;
-    if (!bytes.data || bytes.size == 0) {
+    if (bytes.empty()) {
         return instructions;
     }
 
@@ -50,8 +50,8 @@ std::vector<dlite::Instruction> disassemble_bytes(
     cs_insn* insn = nullptr;
     const size_t count = cs_disasm(
         handle,
-        bytes.data,
-        bytes.size,
+        bytes.data(),
+        bytes.size(),
         address,
         0,
         &insn);

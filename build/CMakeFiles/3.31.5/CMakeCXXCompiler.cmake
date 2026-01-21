@@ -19,9 +19,8 @@ set(CMAKE_CXX26_COMPILE_FEATURES "cxx_std_26")
 set(CMAKE_CXX_PLATFORM_ID "MinGW")
 set(CMAKE_CXX_SIMULATE_ID "")
 set(CMAKE_CXX_COMPILER_FRONTEND_VARIANT "GNU")
-set(CMAKE_CXX_COMPILER_APPLE_SYSROOT "")
 set(CMAKE_CXX_SIMULATE_VERSION "")
-set(CMAKE_CXX_COMPILER_ARCHITECTURE_ID "x86_64")
+
 
 
 
@@ -34,7 +33,7 @@ set(CMAKE_LINKER_LINK "")
 set(CMAKE_LINKER_LLD "")
 set(CMAKE_CXX_COMPILER_LINKER "C:/mingw64/bin/ld.exe")
 set(CMAKE_CXX_COMPILER_LINKER_ID "GNU")
-set(CMAKE_CXX_COMPILER_LINKER_VERSION 2.30)
+set(CMAKE_CXX_COMPILER_LINKER_VERSION 2.44)
 set(CMAKE_CXX_COMPILER_LINKER_FRONTEND_VARIANT GNU)
 set(CMAKE_MT "")
 set(CMAKE_TAPI "CMAKE_TAPI-NOTFOUND")
@@ -59,9 +58,7 @@ endforeach()
 
 set(CMAKE_CXX_LINKER_PREFERENCE 30)
 set(CMAKE_CXX_LINKER_PREFERENCE_PROPAGATES 1)
-set(CMAKE_CXX_LINKER_DEPFILE_SUPPORTED FALSE)
-set(CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED TRUE)
-set(CMAKE_CXX_LINKER_PUSHPOP_STATE_SUPPORTED TRUE)
+set(CMAKE_CXX_LINKER_DEPFILE_SUPPORTED )
 
 # Save compiler ABI information.
 set(CMAKE_CXX_SIZEOF_DATA_PTR "8")
@@ -90,9 +87,9 @@ endif()
 
 
 
-set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++;C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32;C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward;C:/Program Files/LLVM/lib/clang/21/include;C:/mingw64/x86_64-w64-mingw32/include;C:/mingw64/include")
+set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "C:/mingw64/include/c++/14.2.0;C:/mingw64/include/c++/14.2.0/x86_64-w64-mingw32;C:/mingw64/include/c++/14.2.0/backward;C:/Program Files/LLVM/lib/clang/21/include;C:/mingw64/x86_64-w64-mingw32/include;C:/mingw64/include")
 set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;mingw32;gcc_s;gcc;moldname;mingwex;advapi32;shell32;user32;kernel32;mingw32;gcc_s;gcc;moldname;mingwex;kernel32")
-set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0;C:/mingw64/x86_64-w64-mingw32/lib;C:/mingw64/x86_64-w64-mingw32/mingw/lib;C:/mingw64/lib;C:/Program Files/LLVM/lib/clang/21/lib/windows")
+set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "C:/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0;C:/mingw64/x86_64-w64-mingw32/lib;C:/mingw64/x86_64-w64-mingw32/mingw/lib;C:/mingw64/lib;C:/Program Files/LLVM/lib/clang/21/lib/windows")
 set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")
 set(CMAKE_CXX_COMPILER_CLANG_RESOURCE_DIR "C:/Program Files/LLVM/lib/clang/21")
 

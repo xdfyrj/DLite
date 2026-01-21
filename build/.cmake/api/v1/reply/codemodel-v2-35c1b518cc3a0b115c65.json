@@ -2,12 +2,15 @@
 	"configurations" : 
 	[
 		{
-			"abstractTargets" : [],
 			"directories" : 
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f6f22219c74102c3da70.json",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.20"
@@ -18,6 +21,21 @@
 					[
 						0
 					]
+				},
+				{
+					"build" : "tests",
+					"jsonFile" : "directory-tests-Debug-70e4927a02b591d5c1f8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "tests",
+					"targetIndexes" : 
+					[
+						1
+					]
 				}
 			],
 			"name" : "Debug",
@@ -26,12 +44,14 @@
 				{
 					"directoryIndexes" : 
 					[
-						0
+						0,
+						1
 					],
 					"name" : "DLite",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -40,8 +60,15 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "DLite::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-DLite-Debug-14d32828134f5d92e586.json",
+					"jsonFile" : "target-DLite-Debug-e46d3c1e3a3cb52848b0.json",
 					"name" : "DLite",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "test::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-test-Debug-541f586397e5b159bb12.json",
+					"name" : "test",
 					"projectIndex" : 0
 				}
 			]
@@ -56,6 +83,6 @@
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 9
+		"minor" : 7
 	}
 }

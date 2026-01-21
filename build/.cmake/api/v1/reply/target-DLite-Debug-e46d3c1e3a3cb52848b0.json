@@ -3,37 +3,54 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "DLite.lib"
+			"path" : "libDLite.a"
 		}
 	],
-	"backtrace" : 1,
+	"backtrace" : 2,
 	"backtraceGraph" : 
 	{
 		"commands" : 
 		[
-			"add_library"
+			"_add_library",
+			"add_library",
+			"target_include_directories",
+			"target_link_libraries"
 		],
 		"files" : 
 		[
+			"C:/vcpkg/scripts/buildsystems/vcpkg.cmake",
 			"CMakeLists.txt"
 		],
 		"nodes" : 
 		[
 			{
-				"file" : 0
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 7,
+				"parent" : 0
 			},
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 7,
+				"line" : 653,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 13,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 18,
 				"parent" : 0
 			}
 		]
-	},
-	"codemodelVersion" : 
-	{
-		"major" : 2,
-		"minor" : 9
 	},
 	"compileGroups" : 
 	[
@@ -41,7 +58,19 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd"
+					"fragment" : "-g -std=gnu++20"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/sumyr/study/RustKiller/DLite/include"
+				},
+				{
+					"backtrace" : 4,
+					"isSystem" : true,
+					"path" : "C:/vcpkg/installed/x64-mingw-dynamic/include"
 				}
 			],
 			"language" : "CXX",
@@ -49,7 +78,7 @@
 			{
 				"backtraces" : 
 				[
-					1
+					2
 				],
 				"standard" : "20"
 			},
@@ -63,7 +92,7 @@
 	],
 	"id" : "DLite::@6890427a1f51a3e7e1df",
 	"name" : "DLite",
-	"nameOnDisk" : "DLite.lib",
+	"nameOnDisk" : "libDLite.a",
 	"paths" : 
 	{
 		"build" : ".",
@@ -84,19 +113,19 @@
 	"sources" : 
 	[
 		{
-			"backtrace" : 1,
+			"backtrace" : 2,
 			"compileGroupIndex" : 0,
 			"path" : "src/loader.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 2,
 			"compileGroupIndex" : 0,
 			"path" : "src/pe_loader.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 2,
 			"compileGroupIndex" : 0,
 			"path" : "src/disasm.cpp",
 			"sourceGroupIndex" : 0
